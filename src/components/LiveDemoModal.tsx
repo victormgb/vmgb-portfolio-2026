@@ -175,15 +175,15 @@ export const LiveDemoModal: React.FC<LiveDemoModalProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-mono text-xs text-cyan-400 font-bold uppercase tracking-wider">
-                  Interactive Live Simulator // Production Sandbox
+                  Live Application & Architecture Sandbox
                 </span>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono">
-                  Active Runtime
+                  Production Active
                 </span>
               </div>
               <h3 className="font-bold text-base text-white font-sans">
                 {activeTab === 'saas'
-                  ? 'Multi-Tenant SaaS Inventory, Sales & Order Management System'
+                  ? 'SystemCA — Multi-Tenant SaaS Inventory, Sales & Order Management'
                   : activeTab === '3d'
                   ? '3D Multi-User Collaborative Platform & WebGL World'
                   : 'Enterprise Payment & Product Review Engine'}
@@ -191,83 +191,159 @@ export const LiveDemoModal: React.FC<LiveDemoModalProps> = ({
             </div>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-2 rounded hover:bg-[#1B2232] text-slate-400 hover:text-white transition-colors"
-            title="Cerrar modal"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-3">
+            {activeTab === 'saas' && (
+              <a
+                href="https://sassinventory-vmgb.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#00F0FF] hover:bg-[#7DF4FF] text-[#0A0D14] font-semibold text-xs font-mono shadow-sm"
+              >
+                <span>Abrir App Real</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            )}
+            <button
+              onClick={onClose}
+              className="p-2 rounded hover:bg-[#1B2232] text-slate-400 hover:text-white transition-colors"
+              title="Cerrar modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex items-center gap-2 px-6 py-2.5 bg-[#0D121B] border-b border-white/5 font-mono text-xs">
-          <button
-            onClick={() => setActiveTab('saas')}
-            className={`px-3 py-1.5 rounded transition-colors ${
-              activeTab === 'saas'
-                ? 'bg-cyan-950 border border-cyan-400/50 text-cyan-300 font-semibold'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            01. Multi-Tenant SaaS Engine
-          </button>
-          <button
-            onClick={() => setActiveTab('3d')}
-            className={`px-3 py-1.5 rounded transition-colors ${
-              activeTab === '3d'
-                ? 'bg-purple-950 border border-purple-400/50 text-purple-300 font-semibold'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            02. 3D WebGL / WebRTC Room
-          </button>
-          <button
-            onClick={() => setActiveTab('payment')}
-            className={`px-3 py-1.5 rounded transition-colors ${
-              activeTab === 'payment'
-                ? 'bg-blue-950 border border-blue-400/50 text-blue-300 font-semibold'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            03. Stripe Payment & Canvas Review
-          </button>
+        <div className="flex items-center justify-between px-6 py-2.5 bg-[#0D121B] border-b border-white/5 font-mono text-xs">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setActiveTab('saas')}
+              className={`px-3 py-1.5 rounded transition-colors ${
+                activeTab === 'saas'
+                  ? 'bg-cyan-950 border border-cyan-400/50 text-cyan-300 font-semibold'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              01. SystemCA (SaaS Real)
+            </button>
+            <button
+              onClick={() => setActiveTab('3d')}
+              className={`px-3 py-1.5 rounded transition-colors ${
+                activeTab === '3d'
+                  ? 'bg-purple-950 border border-purple-400/50 text-purple-300 font-semibold'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              02. 3D WebGL / WebRTC Room
+            </button>
+            <button
+              onClick={() => setActiveTab('payment')}
+              className={`px-3 py-1.5 rounded transition-colors ${
+                activeTab === 'payment'
+                  ? 'bg-blue-950 border border-blue-400/50 text-blue-300 font-semibold'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              03. Stripe Payment & Canvas
+            </button>
+          </div>
+
+          {activeTab === 'saas' && (
+            <div className="hidden md:flex items-center gap-3 text-[11px]">
+              <a
+                href="https://github.com/victormgb/sass-inventory-frontend"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-cyan-300 flex items-center gap-1"
+              >
+                <span>Frontend Repo</span>
+                <span className="text-cyan-400">↗</span>
+              </a>
+              <span className="text-slate-600">·</span>
+              <a
+                href="https://github.com/victormgb/sass-inventory-backend"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-cyan-300 flex items-center gap-1"
+              >
+                <span>Backend Repo</span>
+                <span className="text-cyan-400">↗</span>
+              </a>
+            </div>
+          )}
         </div>
 
         {/* Tab Content */}
         <div className="p-6">
           {activeTab === 'saas' && (
             <div className="space-y-6">
+              {/* Real Project Banner */}
+              <div className="p-4 rounded-lg bg-[#0F141C] border border-cyan-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-mono font-bold text-white">
+                      APLICACIÓN EN PRODUCCIÓN:
+                    </span>
+                    <a
+                      href="https://sassinventory-vmgb.netlify.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-[#00F0FF] hover:underline flex items-center gap-1 font-semibold"
+                    >
+                      <span>https://sassinventory-vmgb.netlify.app/</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                  <p className="text-xs text-slate-400 font-sans">
+                    Arquitectura Multi-Tenant implementada con frontend en Next.js/React desplegado en Netlify y backend de microservicios con PostgreSQL (aislamiento estricto por esquema para SystemCA y nuevos inquilinos).
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <a
+                    href="https://sassinventory-vmgb.netlify.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-2 rounded bg-[#00F0FF] hover:bg-[#7DF4FF] text-[#0A0D14] font-bold text-xs font-mono shadow-md shadow-cyan-500/20"
+                  >
+                    Abrir App en Vivo ↗
+                  </a>
+                </div>
+              </div>
+
               {/* Tenant Switcher & Isolation Inspector */}
               <div className="p-4 rounded-lg bg-[#0F141C] border border-white/8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <div className="text-xs font-mono text-cyan-400 flex items-center gap-1.5 mb-1">
                     <Building2 className="w-4 h-4" />
-                    <span>TENANT ISOLATION SELECTOR (SCHEMA PER TENANT):</span>
+                    <span>INSPECTOR DE AISLAMIENTO POR ESQUEMA (POSTGRESQL):</span>
                   </div>
                   <p className="text-xs text-slate-400">
-                    Cambiar el inquilino modifica el contexto de autenticación JWT y cambia el search_path en PostgreSQL en tiempo real.
+                    Selecciona un inquilino para simular el enrutamiento de consultas con SET search_path hacia su esquema aislado.
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2 shrink-0">
-                  {(['acme', 'nova', 'vertex'] as const).map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => setTenant(t)}
-                      className={`px-3 py-1.5 rounded font-mono text-xs transition-all ${
-                        tenant === t
-                          ? 'bg-[#00F0FF] text-[#0A0D14] font-bold shadow-md shadow-cyan-500/25'
-                          : 'bg-[#131924] text-slate-300 border border-white/10 hover:border-cyan-500/30'
-                      }`}
-                    >
-                      {t === 'acme'
-                        ? 'Acme Corp (ID: #89)'
-                        : t === 'nova'
-                        ? 'Nova Logistics (ID: #12)'
-                        : 'Vertex Labs (ID: #04)'}
-                    </button>
-                  ))}
+                  <button
+                    onClick={() => setTenant('acme')}
+                    className={`px-3 py-1.5 rounded font-mono text-xs transition-all ${
+                      tenant === 'acme'
+                        ? 'bg-[#00F0FF] text-[#0A0D14] font-bold shadow-md shadow-cyan-500/25'
+                        : 'bg-[#131924] text-slate-300 border border-white/10 hover:border-cyan-500/30'
+                    }`}
+                  >
+                    SystemCA (Principal)
+                  </button>
+                  <button
+                    onClick={() => setTenant('nova')}
+                    className={`px-3 py-1.5 rounded font-mono text-xs transition-all ${
+                      tenant === 'nova'
+                        ? 'bg-[#00F0FF] text-[#0A0D14] font-bold shadow-md shadow-cyan-500/25'
+                        : 'bg-[#131924] text-slate-300 border border-white/10 hover:border-cyan-500/30'
+                    }`}
+                  >
+                    Tenant Beta (+ Nuevo)
+                  </button>
                 </div>
               </div>
 

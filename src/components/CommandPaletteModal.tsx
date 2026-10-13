@@ -10,6 +10,7 @@ import {
   ArrowRight,
   X,
   Phone,
+  ExternalLink,
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 
@@ -50,8 +51,38 @@ export const CommandPaletteModal: React.FC<CommandPaletteModalProps> = ({
 
   const actions = [
     {
+      id: 'live-saas-netlify',
+      title: 'Abrir Aplicación Real en Vivo: SystemCA (Netlify)',
+      category: 'Proyectos',
+      icon: <Zap className="w-4 h-4 text-emerald-400" />,
+      run: () => {
+        window.open('https://sassinventory-vmgb.netlify.app/', '_blank');
+        onClose();
+      },
+    },
+    {
+      id: 'github-frontend',
+      title: 'Ver Repositorio Frontend: sass-inventory-frontend',
+      category: 'GitHub',
+      icon: <ExternalLink className="w-4 h-4 text-cyan-400" />,
+      run: () => {
+        window.open('https://github.com/victormgb/sass-inventory-frontend', '_blank');
+        onClose();
+      },
+    },
+    {
+      id: 'github-backend',
+      title: 'Ver Repositorio Backend: sass-inventory-backend',
+      category: 'GitHub',
+      icon: <ExternalLink className="w-4 h-4 text-blue-400" />,
+      run: () => {
+        window.open('https://github.com/victormgb/sass-inventory-backend', '_blank');
+        onClose();
+      },
+    },
+    {
       id: 'demo-saas',
-      title: 'Abrir Simulador: Multi-Tenant SaaS Engine',
+      title: 'Abrir Simulador In-App: SystemCA Multi-Tenant Engine',
       category: 'Proyectos',
       icon: <Zap className="w-4 h-4 text-cyan-400" />,
       run: () => {

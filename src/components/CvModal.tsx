@@ -108,6 +108,50 @@ export const CvModal: React.FC<CvModalProps> = ({ onClose, lang }) => {
             </div>
           </div>
 
+          {/* Proyectos Destacados en Producción */}
+          <div>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 mb-3 border-b border-white/5 pb-1">
+              Showcase de Arquitectura en Producción
+            </h2>
+            <div className="p-4 rounded bg-[#0F141C] border border-cyan-500/20 text-xs space-y-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span className="font-bold text-white text-sm">
+                  SystemCA — Multi-Tenant SaaS Inventory, Sales & Order Management System
+                </span>
+                <a
+                  href="https://sassinventory-vmgb.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 hover:underline font-mono flex items-center gap-1"
+                >
+                  <span>sassinventory-vmgb.netlify.app</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+              <p className="text-slate-300 leading-relaxed">
+                Plataforma SaaS empresarial completa con aislamiento de datos multi-inquilino en PostgreSQL a nivel de esquema, control de roles (RBAC) y reportes de inventario y ventas.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-1 font-mono text-[11px] text-slate-400">
+                <a
+                  href="https://github.com/victormgb/sass-inventory-frontend"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-cyan-300 flex items-center gap-1"
+                >
+                  <span className="text-slate-500">Frontend:</span> github.com/victormgb/sass-inventory-frontend ↗
+                </a>
+                <a
+                  href="https://github.com/victormgb/sass-inventory-backend"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-cyan-300 flex items-center gap-1"
+                >
+                  <span className="text-slate-500">Backend:</span> github.com/victormgb/sass-inventory-backend ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
           {/* Experiencia Laboral */}
           <div>
             <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 mb-4 border-b border-white/5 pb-1">
