@@ -219,7 +219,7 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ onOpenDemo, 
                     <div className="flex items-center gap-2">
                       <div className="text-right hidden sm:block">
                         <div className="text-[11px] font-semibold text-white leading-tight">victor</div>
-                        <div className="text-[9px] text-slate-400 font-mono leading-tight">victormgbx3099@gmail.com</div>
+                        <div className="text-[9px] text-slate-400 font-mono leading-tight">victormgb3099@gmail.com</div>
                       </div>
                       <div className="w-5 h-5 rounded-full bg-slate-200 text-slate-900 font-bold text-[10px] flex items-center justify-center font-mono">
                         V
@@ -350,7 +350,7 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ onOpenDemo, 
                   <div className="space-y-1 py-2 text-[10px] sm:text-[11px]">
                     <div className="flex items-center justify-between text-slate-300">
                       <span className="text-slate-400">
-                        [AUTH_VALIDATED] JWT verified: victor@gmail.com
+                        [AUTH_VALIDATED] JWT verified: victormgb3099@gmail.com
                       </span>
                       <span className="text-emerald-400 font-semibold">200 OK</span>
                     </div>

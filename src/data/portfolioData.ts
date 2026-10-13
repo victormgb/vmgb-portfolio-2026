@@ -337,7 +337,7 @@ export const PORTFOLIO_DATA = {
     sectionTag: 'INICIAR CONVERSACIÓN TÉCNICA',
     heading: '¿Listo para elevar la arquitectura de tu producto?',
     subheading: 'Disponible de inmediato para posiciones de Lead Frontend Architect o Senior FullStack Developer en esquemas remotos globales.',
-    email: 'victormgbx3099@gmail.com',
+    email: 'victormgb3099@gmail.com',
     phone: '+58 4121939716',
     phoneDisplay: '+58 4121939716',
     location: 'Anaco, Anzoátegui, Venezuela (UTC-4)',
