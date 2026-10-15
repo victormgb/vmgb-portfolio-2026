@@ -14,6 +14,12 @@ import {
   TrendingUp,
   AlertTriangle,
   ShoppingCart,
+  Gamepad2,
+  Flame,
+  Target,
+  Trophy,
+  Star,
+  Check,
 } from 'lucide-react';
 
 interface ProjectsShowcaseProps {
@@ -461,82 +467,180 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ onOpenDemo, 
             </div>
           </div>
 
-          {/* Project 03: Enterprise Payment & Review Engine */}
-          <div className="p-6 sm:p-7 rounded-xl bg-[#0F141C] border border-white/8 hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between group">
+          {/* Project 03: Gamefication Objectives (Next.js, PostgreSQL, Supabase) */}
+          <div className="p-6 sm:p-7 rounded-xl bg-[#0F141C] border border-white/8 hover:border-cyan-500/40 transition-all duration-300 flex flex-col justify-between group">
             <div>
               <div className="flex items-center justify-between text-xs font-mono mb-3">
-                <span className="text-blue-400 font-semibold">
+                <span className="text-cyan-400 font-semibold">
                   {project3.projectNumber}
                 </span>
                 <span className="text-slate-400">{project3.subtitle}</span>
               </div>
 
-              <h4 className="text-lg sm:text-xl font-bold text-white mb-3 tracking-tight group-hover:text-blue-300 transition-colors">
-                {project3.title}
-              </h4>
+              <div className="flex items-center justify-between gap-2 mb-3">
+                <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
+                  {project3.title}
+                </h4>
+                <a
+                  href="https://gamefication-objectives.netlify.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded bg-[#00F0FF]/10 border border-cyan-400/40 text-[#00F0FF] hover:bg-[#00F0FF] hover:text-[#0A0D14] font-mono text-[11px] font-semibold flex items-center gap-1 transition-all shrink-0"
+                >
+                  <span>App en Vivo</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
 
               <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5 font-normal">
                 {project3.description}
               </p>
 
-              <div className="flex flex-wrap gap-1.5 mb-6">
+              <div className="flex flex-wrap gap-1.5 mb-5">
                 {project3.architectureDetails.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-2 py-0.5 rounded bg-[#131924] border border-white/5 text-slate-400 font-mono text-[11px]"
+                    className="px-2 py-0.5 rounded bg-[#131924] border border-white/5 text-slate-300 font-mono text-[11px]"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
 
-              {/* Payment Flow & Canvas Telemetry HUD */}
-              <div
-                onClick={() => onOpenDemo(project3.id)}
-                className="cursor-pointer p-4 rounded-lg bg-[#0A0D14] border border-blue-500/20 hover:border-blue-400/50 mb-6 relative overflow-hidden group/hud transition-all"
-              >
-                <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
-                  <span className="flex items-center gap-1.5 text-blue-300">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>STRIPE GATEWAY / WEBSOCKETS</span>
-                  </span>
-                  <span className="text-emerald-400 font-semibold">
-                    {project3.metrics.value}
-                  </span>
+              {/* Gamefication Objectives Preview (matching image.png) */}
+              <div className="rounded-lg bg-[#070A0F] border border-cyan-500/30 overflow-hidden mb-6 shadow-xl text-slate-200">
+                {/* Browser top shell */}
+                <div className="flex items-center justify-between px-3 py-1.5 bg-[#10141D] border-b border-white/10 font-mono text-xs">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-red-500/80 inline-block" />
+                    <span className="w-2 h-2 rounded-full bg-yellow-500/80 inline-block" />
+                    <span className="w-2 h-2 rounded-full bg-emerald-500/80 inline-block" />
+                  </div>
+                  <a
+                    href="https://gamefication-objectives.netlify.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-300 hover:text-cyan-400 text-[10px] truncate px-2 font-mono flex items-center gap-1"
+                  >
+                    <span>https://gamefication-objectives.netlify.app</span>
+                    <ExternalLink className="w-2.5 h-2.5 text-cyan-400" />
+                  </a>
+                  <span className="text-[10px] text-emerald-400 font-bold font-mono">SUPABASE RLS</span>
                 </div>
 
-                <div className="h-28 rounded bg-[#111622] border border-white/5 p-3 flex flex-col justify-between relative overflow-hidden">
-                  <div className="flex items-center justify-between text-[11px] font-mono">
-                    <span className="text-slate-400">AWS_ALB :: auto-scaling active</span>
-                    <span className="text-blue-400">Redis Pub/Sub</span>
-                  </div>
-
-                  <div className="flex items-center justify-center gap-3 font-mono text-xs">
-                    <div className="px-2.5 py-1 rounded bg-[#172030] border border-blue-500/30 text-blue-300">
-                      Client Canvas
+                {/* Dashboard Header Bar */}
+                <div className="p-3 bg-[#0B0F17] border-b border-white/5 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded bg-[#131924] border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+                      <Gamepad2 className="w-3.5 h-3.5" />
                     </div>
-                    <span className="text-slate-500">⇄ WS ⇄</span>
-                    <div className="px-2.5 py-1 rounded bg-[#172030] border border-emerald-500/30 text-emerald-300">
-                      Stripe Vault
+                    <div>
+                      <div className="text-[11px] font-bold text-white tracking-wide uppercase">
+                        GAMEFICATION <span className="text-slate-400 font-normal lowercase">Objectives</span>
+                      </div>
                     </div>
                   </div>
 
-                  <span className="block text-center font-mono text-[10px] text-blue-300">
-                    [Haz clic para simular transacción y anotación sobre canvas]
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono text-amber-400 bg-amber-950/40 border border-amber-500/30 px-2 py-0.5 rounded">
+                      ADVENTURER · Lv. 1
+                    </span>
+                  </div>
+                </div>
+
+                {/* Mini Stats Banner */}
+                <div className="p-2.5 bg-[#090D14] grid grid-cols-4 gap-1.5 text-center font-mono border-b border-white/5">
+                  <div className="p-1 rounded bg-[#111620] border border-white/5">
+                    <div className="text-[8px] text-slate-400">TODAY</div>
+                    <div className="text-xs font-bold text-emerald-400">0</div>
+                  </div>
+                  <div className="p-1 rounded bg-[#111620] border border-white/5">
+                    <div className="text-[8px] text-slate-400 flex items-center justify-center gap-0.5">
+                      <Flame className="w-2 h-2 text-amber-400" />
+                      <span>STREAK</span>
+                    </div>
+                    <div className="text-xs font-bold text-amber-400">0</div>
+                  </div>
+                  <div className="p-1 rounded bg-[#111620] border border-white/5">
+                    <div className="text-[8px] text-slate-400 flex items-center justify-center gap-0.5">
+                      <Target className="w-2 h-2 text-cyan-400" />
+                      <span>ACTIVE</span>
+                    </div>
+                    <div className="text-xs font-bold text-cyan-400">4</div>
+                  </div>
+                  <div className="p-1 rounded bg-[#111620] border border-white/5">
+                    <div className="text-[8px] text-slate-400 flex items-center justify-center gap-0.5">
+                      <Trophy className="w-2 h-2 text-amber-400" />
+                      <span>DONE</span>
+                    </div>
+                    <div className="text-xs font-bold text-slate-300">0</div>
+                  </div>
+                </div>
+
+                {/* Active Goals Grid from screenshot */}
+                <div className="p-2.5 bg-[#070A0F] space-y-1.5">
+                  <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 pb-1">
+                    <span className="uppercase font-bold text-slate-300">ACTIVE GOALS (UNCATEGORIZED: 4)</span>
+                    <span className="text-cyan-400">+ New goal</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                    {[
+                      { name: 'Call friend', type: 'One-time', xp: '10 XP' },
+                      { name: 'Do the shopping', type: 'Daily', xp: '10 XP' },
+                      { name: '30 minutes exercise', type: 'Daily', xp: '10 XP' },
+                      { name: 'Read 30 pages', type: 'Daily', xp: '10 XP' },
+                    ].map((goal, gIdx) => (
+                      <div
+                        key={gIdx}
+                        className="p-2 rounded bg-[#0D121B] border border-white/5 flex flex-col justify-between"
+                      >
+                        <div className="flex items-center justify-between text-[9px] font-mono mb-1">
+                          <span className="text-slate-400 bg-white/5 px-1 py-0.5 rounded">
+                            {goal.type}
+                          </span>
+                          <span className="text-amber-400 font-bold flex items-center gap-0.5">
+                            <Star className="w-2.5 h-2.5 fill-current" />
+                            <span>{goal.xp}</span>
+                          </span>
+                        </div>
+                        <div className="text-xs font-semibold text-white truncate mb-1.5">
+                          {goal.name}
+                        </div>
+                        <div className="flex items-center justify-between text-[10px]">
+                          <span className="text-slate-500 text-[9px]">0% (0/1)</span>
+                          <span className="px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/40 font-mono text-[9px] flex items-center gap-0.5">
+                            <Check className="w-2 h-2" />
+                            <span>Complete</span>
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center justify-between pt-4 border-t border-white/5 text-xs font-mono">
               <span className="text-slate-400">{project3.role}</span>
-              <button
-                onClick={() => onOpenDemo(project3.id)}
-                className="text-blue-400 hover:text-blue-300 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform"
-              >
-                <span>Ver Arquitectura</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://gamefication-objectives.netlify.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-semibold"
+                >
+                  <span>Abrir App Real</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <button
+                  onClick={() => onOpenDemo(project3.id)}
+                  className="text-slate-300 hover:text-white flex items-center gap-1"
+                >
+                  <span>Simulador</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+              </div>
             </div>
           </div>
         </div>

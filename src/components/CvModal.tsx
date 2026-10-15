@@ -150,6 +150,29 @@ export const CvModal: React.FC<CvModalProps> = ({ onClose, lang }) => {
                 </a>
               </div>
             </div>
+
+            <div className="p-4 rounded bg-[#0F141C] border border-cyan-500/20 text-xs space-y-2 mt-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span className="font-bold text-white text-sm">
+                  Gamefication Objectives — Personal Goals & Habits Platform
+                </span>
+                <a
+                  href="https://gamefication-objectives.netlify.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 hover:underline font-mono flex items-center gap-1"
+                >
+                  <span>gamefication-objectives.netlify.app</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+              <p className="text-slate-300 leading-relaxed">
+                Aplicación web de gamificación para seguimiento de objetivos personales y hábitos diarios. Construida con Next.js y PostgreSQL en Supabase, con niveles de XP, rachas activas y seguridad Row Level Security (RLS).
+              </p>
+              <div className="flex flex-wrap gap-4 pt-1 font-mono text-[11px] text-slate-400">
+                <span className="text-slate-400">Stack: Next.js · PostgreSQL · Supabase · RLS · Tailwind CSS</span>
+              </div>
+            </div>
           </div>
 
           {/* Experiencia Laboral */}

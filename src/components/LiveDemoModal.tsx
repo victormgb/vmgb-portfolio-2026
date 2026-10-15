@@ -15,6 +15,15 @@ import {
   ArrowRight,
   RefreshCw,
   Search,
+  Gamepad2,
+  Flame,
+  Target,
+  Trophy,
+  Star,
+  Check,
+  Plus,
+  Trash2,
+  ExternalLink,
 } from 'lucide-react';
 
 interface LiveDemoModalProps {
@@ -28,7 +37,7 @@ export const LiveDemoModal: React.FC<LiveDemoModalProps> = ({
   onClose,
   lang,
 }) => {
-  const [activeTab, setActiveTab] = useState<'saas' | '3d' | 'payment'>('saas');
+  const [activeTab, setActiveTab] = useState<'saas' | '3d' | 'gamification'>('saas');
   const [tenant, setTenant] = useState<'acme' | 'nova' | 'vertex'>('acme');
   const [searchQuery, setSearchQuery] = useState('');
   const [stockItems, setStockItems] = useState([
@@ -44,15 +53,69 @@ export const LiveDemoModal: React.FC<LiveDemoModalProps> = ({
     '[ROUTING] Dynamic schema resolution ready',
   ]);
 
+  // Gamification interactive state
+  const [gamificationGoals, setGamificationGoals] = useState([
+    { id: '1', title: 'Call friend', type: 'One-time', xp: 10, completed: false },
+    { id: '2', title: 'Do the shopping', type: 'Daily', xp: 10, completed: false },
+    { id: '3', title: '30 minutes exercise', type: 'Daily', xp: 10, completed: false },
+    { id: '4', title: 'Read 30 pages', type: 'Daily', xp: 10, completed: false },
+  ]);
+  const [xp, setXp] = useState(0);
+  const [level, setLevel] = useState(1);
+  const [streak, setStreak] = useState(0);
+  const [newGoalTitle, setNewGoalTitle] = useState('');
+  const [newGoalType, setNewGoalType] = useState<'Daily' | 'One-time'>('Daily');
+
   // 3D Canvas rotation state
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [rotationAngle, setRotationAngle] = useState(0);
 
   useEffect(() => {
     if (projectId === '3d-webrtc-platform') setActiveTab('3d');
-    else if (projectId === 'fintech-review-engine') setActiveTab('payment');
+    else if (projectId === 'gamification-objectives') setActiveTab('gamification');
     else setActiveTab('saas');
   }, [projectId]);
+
+  const handleCompleteGoal = (id: string) => {
+    setGamificationGoals((prev) =>
+      prev.map((g) => {
+        if (g.id === id) {
+          if (!g.completed) {
+            const nextXp = xp + g.xp;
+            if (nextXp >= 100) {
+              setLevel((l) => l + 1);
+              setXp(nextXp - 100);
+            } else {
+              setXp(nextXp);
+            }
+            setStreak((s) => s + 1);
+            return { ...g, completed: true };
+          }
+        }
+        return g;
+      })
+    );
+  };
+
+  const handleAddGoal = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newGoalTitle.trim()) return;
+    setGamificationGoals((prev) => [
+      ...prev,
+      {
+        id: Date.now().toString(),
+        title: newGoalTitle.trim(),
+        type: newGoalType,
+        xp: 10,
+        completed: false,
+      },
+    ]);
+    setNewGoalTitle('');
+  };
+
+  const handleDeleteGoal = (id: string) => {
+    setGamificationGoals((prev) => prev.filter((g) => g.id !== id));
+  };
 
   // Simple 3D wireframe animation on canvas
   useEffect(() => {
@@ -186,7 +249,7 @@ export const LiveDemoModal: React.FC<LiveDemoModalProps> = ({
                   ? 'SystemCA — Multi-Tenant SaaS Inventory, Sales & Order Management'
                   : activeTab === '3d'
                   ? '3D Multi-User Collaborative Platform & WebGL World'
-                  : 'Enterprise Payment & Product Review Engine'}
+                  : 'Gamefication Objectives — Personal Goals & Habits Platform'}
               </h3>
             </div>
           </div>
@@ -195,6 +258,17 @@ export const LiveDemoModal: React.FC<LiveDemoModalProps> = ({
             {activeTab === 'saas' && (
               <a
                 href="https://sassinventory-vmgb.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#00F0FF] hover:bg-[#7DF4FF] text-[#0A0D14] font-semibold text-xs font-mono shadow-sm"
+              >
+                <span>Abrir App Real</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            )}
+            {activeTab === 'gamification' && (
+              <a
+                href="https://gamefication-objectives.netlify.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#00F0FF] hover:bg-[#7DF4FF] text-[#0A0D14] font-semibold text-xs font-mono shadow-sm"
@@ -237,14 +311,14 @@ export const LiveDemoModal: React.FC<LiveDemoModalProps> = ({
               02. 3D WebGL / WebRTC Room
             </button>
             <button
-              onClick={() => setActiveTab('payment')}
+              onClick={() => setActiveTab('gamification')}
               className={`px-3 py-1.5 rounded transition-colors ${
-                activeTab === 'payment'
-                  ? 'bg-blue-950 border border-blue-400/50 text-blue-300 font-semibold'
+                activeTab === 'gamification'
+                  ? 'bg-cyan-950 border border-cyan-400/50 text-cyan-300 font-semibold'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              03. Stripe Payment & Canvas
+              03. Gamefication Objectives (Netlify)
             </button>
           </div>
 
@@ -525,36 +599,238 @@ export const LiveDemoModal: React.FC<LiveDemoModalProps> = ({
             </div>
           )}
 
-          {activeTab === 'payment' && (
+          {activeTab === 'gamification' && (
             <div className="space-y-6">
-              <div className="p-6 rounded-lg bg-[#0F141C] border border-blue-500/30 space-y-4">
-                <div className="flex items-center justify-between font-mono text-xs">
-                  <span className="text-blue-400 font-bold uppercase flex items-center gap-1.5">
-                    <Shield className="w-4 h-4 text-emerald-400" />
-                    <span>PCI-DSS Level 1 Compliant Payment Tunnel</span>
-                  </span>
-                  <span className="text-emerald-400 font-bold">
-                    99.99% Fault Tolerance
+              {/* Production App Live Banner */}
+              <div className="p-4 rounded-lg bg-[#0F141C] border border-cyan-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-mono font-bold text-white">
+                      APLICACIÓN EN PRODUCCIÓN:
+                    </span>
+                    <a
+                      href="https://gamefication-objectives.netlify.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-[#00F0FF] hover:underline flex items-center gap-1 font-semibold"
+                    >
+                      <span>https://gamefication-objectives.netlify.app</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                  <p className="text-xs text-slate-400 font-sans">
+                    Plataforma de gamificación personal para seguimiento de hábitos y objetivos. Desarrollada con Next.js y base de datos relacional PostgreSQL en Supabase con Row Level Security (RLS) y sincronización reactiva.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <a
+                    href="https://gamefication-objectives.netlify.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-2 rounded bg-[#00F0FF] hover:bg-[#7DF4FF] text-[#0A0D14] font-bold text-xs font-mono shadow-md shadow-cyan-500/20"
+                  >
+                    Abrir App en Vivo ↗
+                  </a>
+                </div>
+              </div>
+
+              {/* Adventurer Level Progress Bar Card (matching image.png) */}
+              <div className="p-4 sm:p-5 rounded-lg bg-[#0A0E17] border border-white/8 relative overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-300 text-xl font-bold">
+                      🧙‍♂️
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-base sm:text-lg font-bold text-white tracking-wide font-serif uppercase">
+                          ADVENTURER
+                        </span>
+                        <span className="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-400/40 text-[#00F0FF] text-[10px] font-mono font-semibold">
+                          Level {level}
+                        </span>
+                      </div>
+                      <div className="text-xs font-mono text-slate-400 mt-0.5">
+                        {xp} total XP · {100 - xp} XP restantes para Level {level + 1}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-left sm:text-right font-mono text-xs text-slate-400">
+                    <span className="text-slate-300 font-semibold">{xp} / 100 XP</span>
+                  </div>
+                </div>
+
+                {/* Level progress meter */}
+                <div className="w-full h-2.5 rounded-full bg-[#131924] overflow-hidden border border-white/5">
+                  <div
+                    className="h-full bg-gradient-to-r from-cyan-500 via-blue-500 to-emerald-400 transition-all duration-500 rounded-full"
+                    style={{ width: `${Math.min(100, Math.max(5, xp))}%` }}
+                  />
+                </div>
+              </div>
+
+              {/* 4 Metric Cards (matching image.png) */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="p-3.5 rounded-lg bg-[#0F141C] border border-white/5">
+                  <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-1">
+                    <span>COMPLETED TODAY</span>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <div className="text-xl sm:text-2xl font-bold text-emerald-400 font-mono">
+                    {gamificationGoals.filter((g) => g.completed).length}
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-lg bg-[#0F141C] border border-white/5">
+                  <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-1">
+                    <span>BEST STREAK</span>
+                    <Flame className="w-4 h-4 text-amber-400" />
+                  </div>
+                  <div className="text-xl sm:text-2xl font-bold text-amber-400 font-mono">
+                    {streak}
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-lg bg-[#0F141C] border border-white/5">
+                  <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-1">
+                    <span>ACTIVE</span>
+                    <Target className="w-4 h-4 text-cyan-400" />
+                  </div>
+                  <div className="text-xl sm:text-2xl font-bold text-cyan-400 font-mono">
+                    {gamificationGoals.filter((g) => !g.completed).length}
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-lg bg-[#0F141C] border border-white/5">
+                  <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-1">
+                    <span>COMPLETED</span>
+                    <Trophy className="w-4 h-4 text-amber-300" />
+                  </div>
+                  <div className="text-xl sm:text-2xl font-bold text-slate-200 font-mono">
+                    {gamificationGoals.filter((g) => g.completed).length}
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Add Goal Form */}
+              <form onSubmit={handleAddGoal} className="p-4 rounded-lg bg-[#0F141C] border border-white/8 flex flex-col sm:flex-row gap-2">
+                <input
+                  type="text"
+                  placeholder="Agregar nuevo objetivo personal (ej. Leer 15 min, Meditar)..."
+                  value={newGoalTitle}
+                  onChange={(e) => setNewGoalTitle(e.target.value)}
+                  className="flex-1 px-3.5 py-2 rounded bg-[#0A0D14] border border-white/10 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
+                />
+                <select
+                  value={newGoalType}
+                  onChange={(e) => setNewGoalType(e.target.value as 'Daily' | 'One-time')}
+                  className="px-3 py-2 rounded bg-[#0A0D14] border border-white/10 text-xs font-mono text-slate-300 focus:outline-none focus:border-cyan-400"
+                >
+                  <option value="Daily">Daily</option>
+                  <option value="One-time">One-time</option>
+                </select>
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded bg-[#00F0FF] hover:bg-[#7DF4FF] text-[#0A0D14] font-bold text-xs font-mono flex items-center justify-center gap-1.5 shrink-0"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>+ New goal</span>
+                </button>
+              </form>
+
+              {/* Active Goals Grid */}
+              <div className="rounded-lg bg-[#0A0D14] border border-white/8 p-4">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-3 mb-3 border-b border-white/5">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-white uppercase">ACTIVE GOALS</span>
+                    <span className="px-2 py-0.5 rounded-full bg-white/10 text-slate-300 text-[10px]">
+                      UNCATEGORIZED ({gamificationGoals.length})
+                    </span>
+                  </div>
+                  <span className="text-cyan-400 text-[11px]">
+                    Tip: Completa objetivos para ganar +10 XP y subir de nivel
                   </span>
                 </div>
 
-                <p className="text-slate-300 text-xs sm:text-sm font-sans leading-relaxed">
-                  Microservicio transaccional diseñado para procesar cobros directos sin exponer información crediticia al backend monolítico. Integra tokens efímeros de Stripe Elements, idempotencia vía Redis y notificaciones por WebSockets.
-                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {gamificationGoals.map((goal) => (
+                    <div
+                      key={goal.id}
+                      className={`p-3.5 rounded-lg border transition-all ${
+                        goal.completed
+                          ? 'bg-[#0E1520] border-emerald-500/40 opacity-75'
+                          : 'bg-[#0F141C] border-white/5 hover:border-cyan-500/30'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between text-xs font-mono mb-2">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] text-slate-400 bg-white/5 px-1.5 py-0.5 rounded">
+                            {goal.type}
+                          </span>
+                          <span className="text-[10px] text-slate-500">? Uncategorized</span>
+                        </div>
+                        <span className="text-amber-400 font-bold font-mono text-[11px] flex items-center gap-1">
+                          <Star className="w-3 h-3 fill-current" />
+                          <span>+{goal.xp} XP</span>
+                        </span>
+                      </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs pt-2">
-                  <div className="p-3 rounded bg-[#131924] border border-white/5">
-                    <div className="text-slate-400 text-[10px]">Arquitectura de Pagos</div>
-                    <div className="text-white font-bold mt-1">Stripe Payment Intents</div>
-                  </div>
-                  <div className="p-3 rounded bg-[#131924] border border-white/5">
-                    <div className="text-slate-400 text-[10px]">Cache & Locks</div>
-                    <div className="text-cyan-400 font-bold mt-1">Redis Redlock Distributed</div>
-                  </div>
-                  <div className="p-3 rounded bg-[#131924] border border-white/5">
-                    <div className="text-slate-400 text-[10px]">Infraestructura AWS</div>
-                    <div className="text-emerald-400 font-bold mt-1">ALB + EC2 Auto-Scaling</div>
-                  </div>
+                      <h5
+                        className={`text-sm font-semibold mb-2 ${
+                          goal.completed ? 'line-through text-slate-400' : 'text-white'
+                        }`}
+                      >
+                        {goal.title}
+                      </h5>
+
+                      <div className="flex items-center justify-between pt-2 border-t border-white/5 text-xs font-mono">
+                        <span className="text-slate-500 text-[11px]">
+                          {goal.completed ? 'Completado hoy (1/1)' : 'Progreso: 0/1 (0%)'}
+                        </span>
+
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => handleDeleteGoal(goal.id)}
+                            className="p-1 rounded hover:bg-red-950/40 text-slate-500 hover:text-red-400 transition-colors"
+                            title="Eliminar objetivo"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+
+                          <button
+                            onClick={() => handleCompleteGoal(goal.id)}
+                            disabled={goal.completed}
+                            className={`px-3 py-1 rounded font-mono text-xs flex items-center gap-1 transition-all ${
+                              goal.completed
+                                ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 cursor-default'
+                                : 'bg-[#00F0FF] hover:bg-[#7DF4FF] text-[#0A0D14] font-bold shadow-md shadow-cyan-500/20'
+                            }`}
+                          >
+                            <Check className="w-3 h-3" />
+                            <span>{goal.completed ? 'Completado' : '✓ Complete'}</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Technical Architecture Notes */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+                <div className="p-3 rounded bg-[#0F141C] border border-white/5">
+                  <div className="text-slate-400 text-[10px] uppercase">Frontend & App Router</div>
+                  <div className="text-white font-bold mt-1">Next.js 14 + Tailwind</div>
+                </div>
+                <div className="p-3 rounded bg-[#0F141C] border border-white/5">
+                  <div className="text-slate-400 text-[10px] uppercase">Persistencia Relacional</div>
+                  <div className="text-cyan-400 font-bold mt-1">PostgreSQL on Supabase</div>
+                </div>
+                <div className="p-3 rounded bg-[#0F141C] border border-white/5">
+                  <div className="text-slate-400 text-[10px] uppercase">Aislamiento & Seguridad</div>
+                  <div className="text-emerald-400 font-bold mt-1">Row Level Security (RLS)</div>
                 </div>
               </div>
             </div>

@@ -17,7 +17,7 @@ export interface ProjectData {
   backendRepo?: string;
   role: string;
   metrics: { label: string; value: string };
-  previewType: 'terminal' | 'webgl' | 'payment';
+  previewType: 'terminal' | 'webgl' | 'payment' | 'gamification';
   terminalSnippet?: {
     filename: string;
     throughput: string;
@@ -195,17 +195,18 @@ export const PORTFOLIO_DATA = {
       previewType: 'webgl',
     },
     {
-      id: 'fintech-review-engine',
+      id: 'gamification-objectives',
       projectNumber: 'PROJECT_ID // 03',
-      title: 'Enterprise Payment & Product Review Engine',
-      subtitle: 'Fintech • Node.js • AWS',
-      badges: ['Node.js (Express)', 'StripeJS SDK', 'WebSockets', 'HTML5 Canvas', 'AWS ALB & EC2', 'Redis Pub/Sub'],
+      title: 'Gamefication Objectives — Personal Goals & Habits Platform',
+      subtitle: 'Next.js • PostgreSQL • Supabase',
+      badges: ['Next.js', 'PostgreSQL', 'Supabase', 'Gamification Logic', 'Tailwind CSS', 'Row Level Security'],
       description:
-        'Microservicio transaccional resiliente para procesamiento seguro de pagos con Node.js y Stripe.JS. Incluye herramienta colaborativa en tiempo real para revisión de activos digitales, anotaciones sobre canvas y chat cliente-diseñador vía WebSockets sobre infraestructura AWS con auto-scaling.',
-      architectureDetails: ['Node.js (Express)', 'StripeJS SDK', 'WebSockets', 'HTML5 Canvas', 'AWS ALB & EC2', 'Redis Pub/Sub'],
-      role: 'FullStack Core Engineer',
-      metrics: { label: 'Compliance', value: 'PCI-DSS READY // 99.99% FAULT TOLERANCE' },
-      previewType: 'payment',
+        'Aplicación web de gamificación para seguimiento de objetivos personales y hábitos diarios. Construida con Next.js y base de datos relacional PostgreSQL sobre Supabase, implementando niveles de experiencia (XP), cálculo de rachas continuas (streaks), categorización dinámica y control de persistencia en tiempo real.',
+      architectureDetails: ['Next.js', 'PostgreSQL', 'Supabase Realtime', 'Row Level Security (RLS)', 'Tailwind CSS', 'TypeScript'],
+      liveUrl: 'https://gamefication-objectives.netlify.app',
+      role: 'FullStack Engineer & Architect',
+      metrics: { label: 'Database & Auth', value: 'POSTGRES RLS // SUPABASE REALTIME' },
+      previewType: 'gamification',
     },
   ],
   bentoMatrix: [

@@ -101,13 +101,23 @@ export const CommandPaletteModal: React.FC<CommandPaletteModalProps> = ({
       },
     },
     {
-      id: 'demo-payment',
-      title: 'Abrir Simulador: Stripe Payment & Canvas Review',
+      id: 'live-gamification-netlify',
+      title: 'Abrir Aplicación Real en Vivo: Gamefication Objectives (Netlify)',
       category: 'Proyectos',
-      icon: <Zap className="w-4 h-4 text-blue-400" />,
+      icon: <Zap className="w-4 h-4 text-cyan-400" />,
+      run: () => {
+        window.open('https://gamefication-objectives.netlify.app', '_blank');
+        onClose();
+      },
+    },
+    {
+      id: 'demo-gamification',
+      title: 'Abrir Simulador In-App: Gamefication Objectives (Next.js / Supabase)',
+      category: 'Proyectos',
+      icon: <Zap className="w-4 h-4 text-cyan-400" />,
       run: () => {
         onClose();
-        onOpenDemo('fintech-review-engine');
+        onOpenDemo('gamification-objectives');
       },
     },
     {
