@@ -62,8 +62,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
         {/* Section Header */}
         <div className="mb-12">
           <div className="flex items-center gap-2 font-mono text-xs text-cyan-400 mb-2 tracking-wider">
-            <span>06 //</span>
-            <span>INICIAR CONVERSACIÓN TÉCNICA</span>
+            <span>{PORTFOLIO_DATA.contact.sectionNum} //</span>
+            <span>{PORTFOLIO_DATA.contact.sectionTag}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-2">
             {lang === 'es'

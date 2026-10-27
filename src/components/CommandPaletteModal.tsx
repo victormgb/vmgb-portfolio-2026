@@ -138,7 +138,6 @@ export const CommandPaletteModal: React.FC<CommandPaletteModalProps> = ({
       run: () => {
         navigator.clipboard.writeText(PORTFOLIO_DATA.contact.email);
         onClose();
-        alert('Email copiado al portapapeles');
       },
     },
     {
@@ -219,7 +218,7 @@ export const CommandPaletteModal: React.FC<CommandPaletteModalProps> = ({
 
         {/* Footer shortcuts */}
         <div className="p-2.5 bg-[#0A0D14] border-t border-white/5 text-[10px] text-slate-500 flex items-center justify-between">
-          <span>ROOT@PRODUCTION:~$ ready</span>
+          <span>Acciones Rápidas</span>
           <span>Presiona ESC para salir</span>
         </div>
       </div>

@@ -13,7 +13,7 @@ export const EducationSection: React.FC<EducationSectionProps> = ({ lang }) => {
         {/* Section Header */}
         <div className="mb-12">
           <div className="flex items-center gap-2 font-mono text-xs text-cyan-400 mb-2 tracking-wider">
-            <span>05 //</span>
+            <span>04 //</span>
             <span>FORMACIÓN ACADÉMICA</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">

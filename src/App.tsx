@@ -3,7 +3,6 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ExecutiveSummary } from './components/ExecutiveSummary';
 import { ProjectsShowcase } from './components/ProjectsShowcase';
-import { TechBentoMatrix } from './components/TechBentoMatrix';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { EducationSection } from './components/EducationSection';
 import { ContactSection } from './components/ContactSection';
@@ -60,16 +59,13 @@ export default function App() {
           lang={lang}
         />
 
-        {/* Section 03: Stack & Capacidades Técnicas / Tech Bento Matrix */}
-        <TechBentoMatrix lang={lang} />
-
-        {/* Section 04: Trayectoria de Liderazgo / Professional Experience */}
+        {/* Section 03: Trayectoria de Liderazgo / Professional Experience */}
         <ExperienceTimeline lang={lang} />
 
-        {/* Section 05: Formación Académica / Education */}
+        {/* Section 04: Formación Académica / Education */}
         <EducationSection lang={lang} />
 
-        {/* Section 06: Iniciar Conversación Técnica / Contact */}
+        {/* Section 05: Iniciar Conversación Técnica / Contact */}
         <ContactSection lang={lang} />
       </main>
 

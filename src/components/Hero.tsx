@@ -7,7 +7,6 @@ import {
   Network,
   Box,
   Bot,
-  Terminal,
   Copy,
   Check,
   Sparkles,
@@ -69,12 +68,6 @@ export const Hero: React.FC<HeroProps> = ({ onSelectProject, lang }) => {
           </div>
         </div>
 
-        {/* Execution Command Prompt Breadcrumb */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#131924]/80 border border-white/10 text-xs font-mono text-slate-300 mb-6">
-          <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
-          <span className="text-cyan-300 font-semibold">ROOT@PRODUCTION:~$</span>
-          <span className="text-slate-200">exec architect_profile.tsx</span>
-        </div>
 
         {/* Main Hero Headline */}
         <div className="max-w-4xl">

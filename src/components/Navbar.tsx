@@ -24,7 +24,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCv, onOpenCommand, lang, s
   const navLinks = [
     { label: lang === 'es' ? 'Sobre Mí' : 'About Me', href: '#sobre-mi' },
     { label: lang === 'es' ? 'Proyectos' : 'Projects', href: '#proyectos' },
-    { label: lang === 'es' ? 'Habilidades' : 'Skills', href: '#habilidades' },
     { label: lang === 'es' ? 'Experiencia' : 'Experience', href: '#experiencia' },
     { label: lang === 'es' ? 'Educación' : 'Education', href: '#educacion' },
     { label: lang === 'es' ? 'Contacto' : 'Contact', href: '#contacto' },
